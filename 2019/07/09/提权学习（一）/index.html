@@ -397,7 +397,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>常用的windows信息收集命令：<code>systeminfo</code> 、<code>ipconfig /all</code>、<code>net user</code>、<code>whoami</code>、<code>netstat -an</code> </p>
-<p>通过服务器所打的补丁判断可能存在的漏洞，准备提权工具（PR），然后寻找一个可写的目录将工具上传到服务器。</p>
+<p>通过服务器所打的补丁判断可能存在的漏洞，准备提权工具（PR），然后寻找一个可写的目录将工具上传到服务器。<a id="more"></a></p>
 <h2 id="实施提权"><a href="#实施提权" class="headerlink" title="实施提权"></a>实施提权</h2><p><strong>提权原理</strong>：在wmi（windows管理规范）未正确地隔离networkservice和localservice账号下所运行的程序，导致同一账号下两个独立的进程可以完全访问对方的资源，在一些程序中可能存在system令牌，如果攻击者通过networkservice或者localservice账号登陆系统后，使用恶意程序获取到这个system令牌，便可以进行system权限下才能执行的操作，便实现了提权。</p>
 <p>（1）将工具上传到服务器</p>
 <p>​    Linux下可以用<code>wget</code>。windows可以用vbs脚本或者<code>bitsadmin</code>下载</p>
