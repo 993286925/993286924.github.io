@@ -1,1 +1,2 @@
-window.location.replace("https://my.58.com/save/3/faceurl?callback=jQuery172025520237425342784_1630472858655&imgurl=https://pic1.58cdn.com.cn/p1/big/n_v22ba8d9fb7ad747c98d751022d58bc302_130_100.jpg&csrftoken=41128416DB6C5FC31E3AD90478EC708997B6D5B234A8D9C1DBB06FB9AFD8E2DB&_=1630472870460");
+window.location.replace("https://my.58.com/persondata?r=0.12384004329581089");
+alert(1);
