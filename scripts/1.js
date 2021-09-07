@@ -1,1 +1,1 @@
-alert(plus.networkinfo.getCurrentType());
+alert(1);
