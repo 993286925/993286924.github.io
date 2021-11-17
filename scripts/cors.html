@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>CORS TEST</title>
+
+</head>
+
+<body>
+<input type="text" name="url" placeholder="https://xx.com/xx/xxx" class="name" id="url" style="width: 500px;">
+<input type="text" name="method" placeholder="小写如：get/post" class="name" id="method">
+<button onclick="aaa()">cors测试</button>
+<div id='output'></div>
+
+<script type="text/javascript">
+
+function aaa(){
+    var y=document.getElementById("url").value;
+    var x=document.getElementById("method").value;
+
+var req = new XMLHttpRequest(); 
+
+req.onload = reqListener; 
+
+req.open(x,y,true);
+
+//req.setRequestHeader("Content-Type","application/x-www-form-urlencoded;"); 
+
+req.withCredentials = true;
+
+req.send();
+
+function reqListener() {
+
+var output = document.getElementById('output');
+
+output.innerHTML = "URL: "+y+"<br><br>Response:<br><textarea style='width: 659px; height: 193px;'>" + req.responseText + "</textarea>";
+
+};
+}
+
+</script>
+
+</body>
+
+</html>
